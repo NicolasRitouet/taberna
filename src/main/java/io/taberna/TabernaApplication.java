@@ -24,5 +24,8 @@ public class TabernaApplication extends Application<TabernaConf> {
         environment.lifecycle().manage(productStore);
 
         environment.jersey().register(new ProductResource(productStore));
+
+        TabernaHealthCheck healthCheck = new TabernaHealthCheck();
+        environment.healthChecks().register("Taberna Main", healthCheck);
     }
 }
